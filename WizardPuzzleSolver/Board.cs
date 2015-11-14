@@ -23,12 +23,17 @@ namespace WizardPuzzleSolver
             m_rect = new Rectangle(0, 0, pieces.Count, 5);
             m_worker = worker;
             m_max = (int) Math.Pow(6.2, pieces.Count);
-            m_step = m_max / 20;
+            m_step = m_max / 20 + 1;
         }
 
         public Pieces GetPieces()
         {
             return m_pieces;
+        }
+
+        public int GetCount()
+        {
+            return m_count;
         }
 
         public Solutions Solve()
@@ -87,7 +92,7 @@ namespace WizardPuzzleSolver
             }
             m_count++;
 
-            if((m_count % m_step) == 0)
+            if((m_count % m_step) == 0 && m_max != 0)
             {
                 m_worker.ReportProgress(100 * m_count / m_max);
             }

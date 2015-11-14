@@ -36,6 +36,7 @@
             this.m_clearAllButton = new System.Windows.Forms.Button();
             this.solverBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.countLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // m_solveButton
@@ -55,9 +56,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel.AutoScroll = true;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(12, 147);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(12, 151);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(948, 246);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(948, 242);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // piecesFlowLayoutPanel
@@ -67,7 +68,7 @@
             this.piecesFlowLayoutPanel.AutoScroll = true;
             this.piecesFlowLayoutPanel.Location = new System.Drawing.Point(13, 13);
             this.piecesFlowLayoutPanel.Name = "piecesFlowLayoutPanel";
-            this.piecesFlowLayoutPanel.Size = new System.Drawing.Size(947, 128);
+            this.piecesFlowLayoutPanel.Size = new System.Drawing.Size(947, 116);
             this.piecesFlowLayoutPanel.TabIndex = 2;
             // 
             // m_checkAllButton
@@ -107,7 +108,17 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(695, 23);
             this.progressBar.Step = 5;
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 5;
+            // 
+            // countLabel
+            // 
+            this.countLabel.AutoSize = true;
+            this.countLabel.Location = new System.Drawing.Point(12, 132);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(107, 13);
+            this.countLabel.TabIndex = 6;
+            this.countLabel.Text = "Number of iterations: ";
             // 
             // SolverForm
             // 
@@ -115,6 +126,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(972, 434);
+            this.Controls.Add(this.countLabel);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.m_clearAllButton);
             this.Controls.Add(this.m_checkAllButton);
@@ -125,6 +137,7 @@
             this.Name = "SolverForm";
             this.Text = "Solver";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,6 +150,7 @@
         private System.Windows.Forms.Button m_clearAllButton;
         private System.ComponentModel.BackgroundWorker solverBackgroundWorker;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label countLabel;
     }
 }
 

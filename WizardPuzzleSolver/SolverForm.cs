@@ -111,6 +111,8 @@ namespace WizardPuzzleSolver
         {
             Cursor.Current = Cursors.WaitCursor;
 
+            countLabel.Text = "Number of solutions: -. Number of iterations: -";
+
             Pieces pieces = new Pieces();
             ColorByPiece colors = new ColorByPiece();
 
@@ -177,6 +179,8 @@ namespace WizardPuzzleSolver
             }
 
             progressBar.Value = 100;
+            countLabel.Text = "Number of solutions: " + arg.m_solutions.Count.ToString("N0") + ". Number of iterations: " + arg.m_board.GetCount().ToString("N0");
+
 
         }
 
