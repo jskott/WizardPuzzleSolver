@@ -22,7 +22,7 @@ namespace WizardPuzzleSolver
             m_pieces = pieces;
             m_rect = new Rectangle(0, 0, pieces.Count, 5);
             m_worker = worker;
-            m_max = (int) Math.Pow(6.5, pieces.Count);
+            m_max = (int) Math.Pow(6.2, pieces.Count);
             m_step = m_max / 20;
         }
 
