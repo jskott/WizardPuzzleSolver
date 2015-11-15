@@ -45,6 +45,39 @@ namespace WizardPuzzleSolver
             return m_solutions;
         }
 
+        private bool ValidIndex(int index, bool[] v)
+        {
+            bool ret = true;
+            if(index < 0 || index >= v.Length || v[index])
+            {
+                ret = false;
+            }
+
+            return ret;
+        }
+        private bool HasAdjacentHole(int index, bool[] v)
+        {
+            return ValidIndex(index - m_rect.Width, v) ||
+                   ValidIndex(index + m_rect.Width, v) ||
+                   ValidIndex(index - 1, v) ||
+                   ValidIndex(index + 1, v);
+
+        }
+        private bool ValidBoard(bool[] v)
+        {
+            for(int i = 0; i < v.Length; i++)
+            {
+                if(!v[i])
+                {
+                    if(!HasAdjacentHole(i, v))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
         public void Solve(SolutionPieces piecesAdded, Pieces piecesLeft, bool[] v)
         {
             if(piecesLeft.Count == 0)
@@ -76,18 +109,21 @@ namespace WizardPuzzleSolver
             {
                 if (AddPoints(ref v, points))
                 {
-                    Pieces newPiecesLeft = new Pieces();
-                    SolutionPieces newPiecesAdded = new SolutionPieces();
+                    if (ValidBoard(v))
+                    {
+                        Pieces newPiecesLeft = new Pieces();
+                        SolutionPieces newPiecesAdded = new SolutionPieces();
 
-                    newPiecesLeft.AddRange(piecesLeft);
-                    newPiecesLeft.Remove(piece);
+                        newPiecesLeft.AddRange(piecesLeft);
+                        newPiecesLeft.Remove(piece);
 
-                    SolutionPiece solutionPiece = new SolutionPiece(piece, rotation, flip, new Point(x, y));
-                    newPiecesAdded.AddRange(piecesAdded);
-                    newPiecesAdded.Add(solutionPiece);
+                        SolutionPiece solutionPiece = new SolutionPiece(piece, rotation, flip, new Point(x, y));
+                        newPiecesAdded.AddRange(piecesAdded);
+                        newPiecesAdded.Add(solutionPiece);
 
 
-                    Solve(newPiecesAdded, newPiecesLeft, v.Clone() as bool[]);
+                        Solve(newPiecesAdded, newPiecesLeft, v.Clone() as bool[]);
+                    }
                 }
             }
             m_count++;
